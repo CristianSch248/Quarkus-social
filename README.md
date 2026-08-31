@@ -1,62 +1,249 @@
-# quarkus-social
+# 🚀 API RESTful com Quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Projeto desenvolvido durante o curso **Aprenda Quarkus e Desenvolva API's RESTful Poderosas em Java**, com foco no desenvolvimento de uma API RESTful utilizando **Java, Quarkus e PostgreSQL**.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+O projeto simula uma **rede social simples**, permitindo aplicar conceitos importantes de desenvolvimento de APIs REST, persistência de dados, testes automatizados e documentação.
 
-## Running the application in dev mode
+## 📚 Sobre o projeto
 
-You can run your application in dev mode that enables live coding using:
+A aplicação foi desenvolvida de forma prática, desde a configuração inicial do projeto até o processo de build e empacotamento da aplicação para execução em ambientes de nuvem.
 
-```shell script
-./mvnw quarkus:dev
+Durante o desenvolvimento foram aplicados conceitos e ferramentas utilizados no desenvolvimento de aplicações Java modernas.
+
+### Principais conceitos abordados
+
+- Desenvolvimento de APIs RESTful
+- Arquitetura e princípios REST
+- Desenvolvimento com Quarkus
+- Persistência de dados com PostgreSQL
+- Mapeamento de entidades
+- Operações CRUD
+- Maven
+- Build e empacotamento da aplicação
+- Preparação da aplicação para ambientes de nuvem
+
+## 🛠️ Tecnologias utilizadas
+
+| Tecnologia | Utilização |
+|---|---|
+| ☕ Java | Linguagem principal |
+| ⚡ Quarkus | Framework para desenvolvimento da API |
+| 🐘 PostgreSQL | Banco de dados relacional |
+| 📦 Maven | Gerenciamento de dependências e build |
+| 🐳 Docker | Containerização e ambiente de desenvolvimento |
+
+## 🏗️ Estrutura do projeto
+
+```text
+src/
+├── main/
+│   ├── java/
+│   │   └── ...
+│   └── resources/
+│       └── application.properties
+│
+└── test/
+    └── java/
+        └── ...
+
+# 🔄 Mapeamento de objetos
+
+Para realizar a conversão entre entidades e DTOs, são utilizados mapeamentos específicos.
+
+O objetivo é manter a camada REST desacoplada das entidades utilizadas na persistência.
+
+Fluxo simplificado:
+
+```text
+HTTP Request
+     │
+     ▼
+ REST Resource
+     │
+     ▼
+    DTO
+     │
+     ▼
+  Mapper
+     │
+     ▼
+  Entity
+     │
+     ▼
+ PostgreSQL
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+No retorno:
 
-## Packaging and running the application
-
-The application can be packaged using:
-
-```shell script
-./mvnw package
+```text
+PostgreSQL
+     │
+     ▼
+  Entity
+     │
+     ▼
+  Mapper
+     │
+     ▼
+    DTO
+     │
+     ▼
+ REST Response
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+# 📚 Conteúdos estudados
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/quarkus-social-1.0-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Provided Code
+Durante o desenvolvimento do projeto foram estudados e aplicados conceitos relacionados a:
 
 ### REST
 
-Easily start your REST Web Services
+- Princípios REST;
+- Recursos;
+- Endpoints;
+- Métodos HTTP;
+- Status HTTP;
+- JSON;
+- Stateless;
+- Comunicação cliente-servidor.
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+### Quarkus
+
+- Criação de projetos;
+- Configuração;
+- REST;
+- Injeção de dependências;
+- Persistência;
+- Configuração de banco;
+- Desenvolvimento em modo dev;
+- Build;
+- Empacotamento.
+
+### Banco de dados
+
+- PostgreSQL;
+- Modelagem relacional;
+- Entidades;
+- Relacionamentos;
+- Persistência;
+- Consultas.
+
+
+## 📥 Clonando o projeto
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/CristianSch248/Quarkus-social.git
+```
+
+Entre no diretório:
+
+```bash
+cd SEU_REPOSITORIO
+```
+
+---
+
+## ⚙️ Configuração do banco
+
+Configure o PostgreSQL e crie o banco utilizado pela aplicação.
+
+Depois configure as informações de conexão no:
+
+```text
+src/main/resources/application.properties
+```
+
+Exemplo:
+
+```properties
+quarkus.datasource.db-kind=postgresql
+quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/database
+quarkus.datasource.username=postgres
+quarkus.datasource.password=postgres
+```
+## 🚀 Executando em modo de desenvolvimento
+
+Execute:
+
+### Linux / macOS
+
+```bash
+./mvnw quarkus:dev
+```
+
+### Windows
+
+```bash
+mvnw.cmd quarkus:dev
+```
+
+O Quarkus iniciará a aplicação em modo de desenvolvimento.
+
+Por padrão:
+
+```text
+http://localhost:8080
+```
+
+# 🐳 Docker
+
+O projeto também utiliza **Docker** como ferramenta de apoio ao desenvolvimento e preparação do ambiente.
+
+O uso de containers facilita a configuração de serviços necessários para executar a aplicação, principalmente o banco de dados PostgreSQL.
+
+Exemplo de arquitetura:
+
+```text
+┌──────────────────────┐
+│      Quarkus API     │
+│      Java / REST     │
+└──────────┬───────────┘
+           │
+           │ JDBC
+           ▼
+┌──────────────────────┐
+│      PostgreSQL      │
+│       Database       │
+└──────────────────────┘
+```
+
+---
+
+# 📦 Build da aplicação
+
+O projeto pode ser compilado utilizando Maven.
+
+### Linux / macOS
+
+```bash
+./mvnw package
+```
+
+### Windows
+
+```bash
+mvnw.cmd package
+```
+
+O processo de build irá compilar o projeto, executar as etapas necessárias e gerar os artefatos da aplicação.
+
+---
+
+# 🎓 Sobre o curso
+
+Este projeto foi desenvolvido como parte do curso:
+
+> **Aprenda Quarkus e Desenvolva API's RESTful Poderosas em Java**
+
+O curso aborda de forma prática o desenvolvimento de uma API RESTful utilizando Java e Quarkus, passando pela configuração inicial do projeto, desenvolvimento dos recursos, persistência em PostgreSQL, testes automatizados com Rest Assured, documentação com Swagger UI e preparação da aplicação para ambientes de nuvem.
+
+O projeto desenvolvido durante o curso utiliza uma rede social simples como contexto para aplicar os conceitos apresentados.
+
+---
+
+## 👨‍💻 Autor
+
+**Cristian Schmitzhaus**
+
+Projeto desenvolvido para fins de estudo e aperfeiçoamento em desenvolvimento **Backend com Java e Quarkus**.
